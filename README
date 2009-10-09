@@ -1,0 +1,5 @@
+Example of Rails with jQuery Sortable plugin
+
+What you need:
+jQuery Sortable Plugin
+Rails acts_as_list plugin

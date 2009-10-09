@@ -1,0 +1,30 @@
+<h1>Departments</h1>
+
+<%= link_to "New Department", new_department_path, :class => 'add' %>
+<table class="grid">
+  <thead>
+    <th class="grabber"/>
+    <th>Name</th>
+    <th>Employees</th>
+    <th class="actions">Actions</th>
+  </thead>
+  <tbody>
+    <% @departments.each do |department| %>
+      <tr id="department_<%= department.id-%>">
+        <td class="grabber"><%= link_to image_tag('crosshair.png'), "#sort"%></td>
+        <td><%= link_to h(department.name), edit_department_path(department) %></td>
+        <td><%= link_to department.employees.count, department_employees_path(department) %></td>
+        <td class="actions">
+          <%= link_to "", edit_department_path(department), :class => 'edit' %>
+          <%= link_to "", department_path(department), :class => 'destroy' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<% javascript_tag do %>
+  $(function() {
+    $('table.grid').sortableGrid('<%= sort_departments_path -%>');
+  });
+<% end %>
